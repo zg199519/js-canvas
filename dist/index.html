@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>自定义分享插件 纯 js</title>-->
+    <meta name="keywords" content="医患+登录">
+    <meta name="description" content="医患+登录">
+    <meta name="renderer" content="webkit" />
+</head>
+<body>
+
+
+    <div class="#social-share">1</div>
+
+
+<script type="text/javascript" src="vendors~main.bundle.js"></script><script type="text/javascript" src="bundle.js"></script>
+<script>
+    zgShare.config({url:1}).listen('#social-share',function (data) {
+        console.log(data);
+    });
+</script>
+
+
+
+
+</body>
+</html>
