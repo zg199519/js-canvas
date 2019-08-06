@@ -1,4 +1,5 @@
 require('jr-qrcode');
+require('./index.css');
 (function () {
         var options = Object();
         options.empty_hint          = '无内容',
@@ -7,7 +8,7 @@ require('jr-qrcode');
         options.title               = webInfo(2,'title'), // 分享的标题
         options.description         = webInfo(1,'description'), // 分享的描述
         options.image               = webInfo(3), // 分享的图片
-        options.sites               = ['wechat','qzone','qq','weibo',], // 分享的站点
+        options.sites               = ['wechat','qq','weibo'], // 分享的站点
         options.target              = '_blank' //打开方式
 
         //抓取网页头部信息
@@ -34,6 +35,7 @@ require('jr-qrcode');
         }
 
 
+
         this.zgShare = {
             config:function (data) {
                 if (typeof data === 'object') {
@@ -43,33 +45,49 @@ require('jr-qrcode');
                 }
                 return this;
             },
-            listen:function (elem,fun) {
+            listen:function (elem = '#social-share',fun = '') {
+                //这里写你的逻辑代码
+                var html_s = `<div class="zg-share">`;
+                if(options.sites instanceof Array){
+                    let sites = options.sites;
+
+                    if(sites.indexOf('weibo') != -1){
+                        var weibo_url = 'http://v.t.sina.com.cn/share/share.php?title='+options.title+'&url='+options.url+'&content=utf-8&sourceUrl='+options.url+'&pic='+options.image;
+                        html_s += `<a href="${weibo_url}"  target="${options.target == '_blank'?'_blank':'_self'}" ><div class="item weibo"></div></a>`;
+                        options.weibo_url = weibo_url;
+                    }
+                    if(sites.indexOf('qq') != -1){
+                        var qq_url = 'https://connect.qq.com/widget/shareqq/iframe_index.html?url='+options.url+'&title='+options.title+'&pics='+options.image+'&desc='+options.description+'&summary='+options.description;
+                        html_s += `<a href="${qq_url}"  target="${options.target == '_blank'?'_blank':'_self'}"><div class="item qq"></div></a>`;
+                        options.qq_url = qq_url;
+                    }
+                    if(sites.indexOf('wechat') != -1){
+                        var w_qrcode = jrQrcode.getQrBase64(options.url);
+                        html_s += `<div class="item wechat"><div class="ewm"><img src="${w_qrcode}" alt="微信分享"></div></div>`;
+                        options.w_qrcode = w_qrcode;
+                    }
+                }
+                html_s += `</div>`;
 
                 if (typeof elem === 'string') {
                     //获取是选择class 元素 还是 id元素
                     if(elem[0] == '#'){
-                        let elem_s =  document.getElementById(elem.slice(1));
-                        arguments.callee(elem_s,fun);
+                        let elemId = document.getElementById(elem.slice(1));
+                        elemId.innerHTML = html_s;
                     }else{
                         let elem_s =  document.querySelectorAll(elem),i = elem_s.length;
-                        while (i--) {
-                            arguments.callee(elem_s[i],fun);
+                        while (i--){
+                            elem_s[i].innerHTML = html_s;
                         }
                     }
-                    return;
                 }
-                //这里写你的逻辑代码
 
-                /**
-                 * 先判断 是都有微信分享
-                 */
-                options.w_qrcode = jrQrcode.getQrBase64(options.url);
-                fun(options);
+                 if(fun instanceof Function){
+                     fun(options);
+                 }
                 return this;
+
             }
         };
 
 })();
-// zgShare.config({url:1}).listen('#social-share',function (data) {
-//     console.log(data);
-// });

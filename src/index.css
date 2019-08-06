@@ -1,0 +1,62 @@
+.zg-share{
+    display: flex;
+    flex-flow: column;
+}
+.zg-share .item{
+    width: 36px;
+    height: 36px;
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #fff;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+    background-size: 60%;
+}
+.zg-share .item .ewm{
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    right: 50px;
+    top: -58px;
+    padding: 4px;
+    box-sizing: border-box;
+    transition: all 0.5s;
+}
+.zg-share .wechat:hover .ewm{
+    width: 152px;
+    height: 152px;
+    opacity: 1;
+}
+.zg-share .item .ewm img{
+    width: 100%;
+}
+
+.zg-share .weibo{
+    background-image: url("./img/weibo1.svg");
+}
+.zg-share .qq{
+    background-image: url("./img/qq1.svg");
+}
+.zg-share .wechat{
+    background-image: url("./img/wechat1.svg");
+}
+.zg-share .weibo:hover{
+    background-image: url("./img/weibo2.svg");
+}
+.zg-share .qq:hover{
+    background-image: url("./img/qq2.svg");
+}
+.zg-share .wechat:hover{
+    background-image: url("./img/wechat2.svg");
+}
+
+
+
+
+

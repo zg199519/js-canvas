@@ -3,8 +3,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');//清理 /dist �
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',
+    mode: 'production',
+    entry: {
+        index:'./src/index.js'
+    },
     devtool: 'inline-source-map',
     devServer:{
         contentBase: './dist'
@@ -13,6 +15,28 @@ module.exports = {
         filename: "bundle.js",
         path: path.resolve(__dirname, './dist')
 
+    },
+    module:{
+        rules:[
+            {
+                 test: /\.css$/,
+                 use: [
+                   'style-loader',
+                   'css-loader'
+                 ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    {
+                        loader:'file-loader',
+                        options: {
+                            name: 'img/[hash].[ext]'
+                        }
+                    }
+                ]
+            }
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(),
