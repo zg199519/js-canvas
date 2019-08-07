@@ -18,7 +18,12 @@
 
 <script type="text/javascript" src="zgShare.js"></script>
 <script>
-    zgShare.listen();
+    zgShare.config({
+        url:'http://www.baidu.com'
+        // ..........
+      }).listen(null,function (data) {
+        console.log(data);
+    });
 </script>
 
 </body>
