@@ -12,7 +12,7 @@ module.exports = {
         contentBase: './dist'
     },
     output: {
-        filename: "bundle.js",
+        filename: "zgShare.js",
         path: path.resolve(__dirname, './dist')
 
     },
