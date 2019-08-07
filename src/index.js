@@ -3,7 +3,7 @@ require('./index.css');
 (function () {
         var options = Object();
         options.empty_hint          = '无内容',
-        options.url                 = window.location.href,// 分享的地址
+        options.url                 = encodeURIComponent(window.location.href),// 分享的地址
         options.source              = webInfo(1,'author'), // 分享的作者
         options.title               = webInfo(2,'title'), // 分享的标题
         options.description         = webInfo(1,'description'), // 分享的描述
@@ -40,7 +40,11 @@ require('./index.css');
             config:function (data) {
                 if (typeof data === 'object') {
                     for (let v in data){
-                        options[v] = data[v];
+                        if(v == 'url'){
+                            options[v] = encodeURIComponent(data[v]);
+                        }else{
+                            options[v] = data[v];
+                        }
                     }
                 }
                 return this;
