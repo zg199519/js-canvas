@@ -66,7 +66,7 @@ require('./index.css');
                         options.qq_url = qq_url;
                     }
                     if(sites.indexOf('wechat') != -1){
-                        var w_qrcode = jrQrcode.getQrBase64(options.url);
+                        var w_qrcode = jrQrcode.getQrBase64(decodeURIComponent(options.url));
                         html_s += `<div class="item wechat"><div class="ewm"><img src="${w_qrcode}" alt="微信分享"></div></div>`;
                         options.w_qrcode = w_qrcode;
                     }
