@@ -12,7 +12,7 @@ module.exports = {
         contentBase: './dist'
     },
     output: {
-        filename: "zgShare.js",
+        filename: "zgDrawing.js",
         path: path.resolve(__dirname, './dist')
 
     },
@@ -47,7 +47,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: '分享的组件',
+            title: '画图工具',
             template: './src/index.html'
         })
     ],

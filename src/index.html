@@ -2,20 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>自定义分享插件  原生js</title>
+    <title>嘎嘎嘎</title>
 
 </head>
 <body>
 
 <style>
-    #social-share{
-        position: fixed;
-        right: 0;
-        margin-right: 80px;
-        bottom: 200px;
+    body{
+        background: #E7E8F1;
     }
-</style>
-<div id="social-share"></div>
+    ._canvas{
+        width: 500px;
+        height: 500px;
+        position: relative;
+        margin-top: 200px;margin-left: 200px;
+        background: #ffffff;
+    }
 
+    ._canvas .canvas-nav{
+        position: absolute;
+        top: -38px;
+        height: 38px;
+        right: 0;
+        display: flex;
+
+    }
+    ._canvas .canvas-nav .item{
+        padding: 0 10px;
+        cursor: pointer;
+        font-size: 14px;
+        background: #666666;
+        margin: 0 5px;
+        height: 100%;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+    }
+    ._canvas .canvas-nav .item:hover{
+        background: #000000;
+    }
+    ._canvas .canvas-textarea{
+        border:1px solid red;
+        height: auto;
+        position: absolute;
+        background: none;
+    }
+
+
+
+
+</style>
+<div id="canvas" class="_canvas"></div>
 </body>
 </html>
